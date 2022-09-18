@@ -21,8 +21,43 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
+
+    //------------------------------esto agregue yo!!--------------------------------------------//
+    const {Diets}=require('./src/db');
+    const Dietas=[
+      "Gluten Free",
+      'Ketogenic',
+      'Vegetarian',
+      'Lacto-Vegetarian',
+      'Ovo-Vegetarian',
+      'Vegan',
+      'Pescetarian',
+      'Paleo',
+      'Primal',
+      'Low FODMAP',
+      'Whole30'
+    ];
+
+    const addDiets=()=>{
+      try{
+        Dietas.forEach(async(e)=>{
+          await Diets.findOrCreate({
+            where:{
+              name:e
+            }
+          })
+        })
+
+      }catch(error){
+        console.log(error,'erro no es una dieta');
+      }
+
+    }
+
+    addDiets();
+
   });
 });
