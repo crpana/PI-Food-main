@@ -40,12 +40,14 @@ const getDbInfo = async () => {
 
 const getApiInfo = async () => {
     try {
+        // const dataApi = await axios.get(
+        //     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true&number=100`
+        // );
         const dataApi = await axios.get(
-            `https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true&number=50`
+            `https://run.mocky.io/v3/80bbe213-daa0-4638-bc36-ae1bd771a3c4`
         );
-
         const { results } = dataApi.data;
-        // console.log(results);
+        
         if (results.length > 0) {
 
             let mapeado = await results?.map(r => {
@@ -147,9 +149,9 @@ const getAllInfoByName = async (name) => {
 };
 
 // router.get('/prueba', async (req, res) => {
-//     const AllData = await getAllInfoApi();
-//     // console.log(AllData);
-//     return res.status(400).json('error en la busqueda')
+//     const hollaaa = await getAllInfoApi();
+//     // console.log(hollaaa);
+//     return res.status(400).json(hollaaa)
 
 // })
 
@@ -281,7 +283,6 @@ router.post('/recipes', async (req, res) => {
             score,
             image,
             
-
         });
 
 

@@ -1,10 +1,28 @@
 import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import LandingPage from './components/landingPage/landingPage';
+import Home from './components/home/home';
+import CreateRecipe from './components/createRecipe/createRecipe';
+import Details from './components/details/details';
+
 
 function App() {
   return (
-    <div className="App">
-      <h1>Henry Food</h1>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+
+          <Route exact path='/' component={LandingPage}></Route>
+          <Route path='/home' component={Home}></Route>
+          <Route path='/detail/:id' component={Details}></Route>
+          <Route path='/create' component={CreateRecipe}></Route>
+
+
+        </Switch>
+      </div>
+
+    </BrowserRouter>
   );
 }
 

@@ -29,16 +29,17 @@ conn.sync({ force: false }).then(() => {
     const {Diets}=require('./src/db');
     const Dietas=[
       "Gluten Free",
+      'dairy free',
       'Ketogenic',
       'Vegetarian',
-      'Lacto-Vegetarian',
-      'Ovo-Vegetarian',
+      'lacto ovo vegetarian',
       'Vegan',
-      'Pescetarian',
-      'Paleo',
+      'pescatarian',
+      'paleolithic',
       'Primal',
-      'Low FODMAP',
-      'Whole30'
+      "fodmap friendly",
+      'Whole 30',
+      
     ];
 
     const addDiets=()=>{

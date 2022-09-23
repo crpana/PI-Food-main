@@ -1,0 +1,38 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25vw;
+    height: 75vh;
+    border: 0.3rem solid #00000091;
+    margin: 1rem 0;
+    border-radius: 3%;
+}
+
+.imgRecipe{
+        margin-top: 10px;
+        width: 25vw;
+    
+}
+
+.tituloCon{
+	font-family: 'Rubik';
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.cardInfo{
+    color: #000000;
+    text-decoration: none;
+
+}
+
+
+.dietasCont{
+	font-family: 'Poppins';
+    font-size: 1rem;
+    text-transform: capitalize;
+    color: #000000;
+    font-weight: 400;
+    text-align: center;
+}
