@@ -10,8 +10,8 @@ function validar(input) {
 
     if (!input.title) {
         error.title = 'type a title'
-    }else if(!/^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$/.test(input.title)){
-        error.title='"No numbers or special characters are allowed";'
+    } else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$/.test(input.title)) {
+        error.title = '"No numbers or special characters are allowed";'
     } else {
         error.title = ''
     }
@@ -51,7 +51,7 @@ export default function CreateRecipe() {
     const alldietas = useSelector(state => state.typesDiets);
     useEffect(() => {
         dispatch(getDiets())
-    }, [])
+    }, [dispatch])
 
 
     const [error, setError] = useState({})
@@ -80,6 +80,7 @@ export default function CreateRecipe() {
     }
 
     function handleCheck(e) {
+        // console.log(input.diets);
 
         if (e.target.checked) {
 
@@ -95,23 +96,47 @@ export default function CreateRecipe() {
                 diets: input.diets.filter(d => e.target.name !== d)
                 //habra un array con las dietas que seleccione ['dairy free', 'Ketogenic', 'Vegetarian']
                 //cada que saquemos un check filtrara y devolvera un array con los con todos los nombres,
-                //pero sin el nombre al que saque el check
+                // pero sin el nombre al que saque el check
                 //por ejemplo: en pantalla le saco el check a Ketogenic y quedara el siguiente array ['dairy free','Vegetarian']
 
             })
 
+            // console.log(input.diets, 'quietado');
 
         }
 
 
     }
-
+    // console.log(input.diets, 'cargado');
 
 
 
     function handleSubmit(e) {
         e.preventDefault()
-        dispatch(postRecipes(input))
+        if (
+            !error.title && input.title && !error.healthScore && input.healthScore && !error.summary && input.summary && !error.steps && input.steps && input.diets.length
+        ) {
+            dispatch(postRecipes(input))
+            console.log(input,'SE CREO LA RECETA!!!');
+            setInput({
+                title: '',
+                healthScore: '',
+                summary: '',
+                steps: '',
+                diets: [],
+            })
+            document.querySelectorAll('#idRecipe input[type=checkbox]').forEach(function (checkElement) {
+                checkElement.checked = false
+            })
+            alert('Se creo la receta!!')
+        } else {
+
+            alert('revise los campos !!')
+        }
+
+
+
+
     }
 
     function clearform(e) {
@@ -138,6 +163,7 @@ export default function CreateRecipe() {
         <React.Fragment>
             <div className={styles.formMainContainer}>
 
+
                 <h2>Create a new recipe</h2>
 
                 <form onSubmit={e => handleSubmit(e)} id='idRecipe'>
@@ -145,16 +171,20 @@ export default function CreateRecipe() {
                     <div className={styles.formContainer}>
                         <div className={styles.formContainerLeft}>
 
-                            <p className={error.title?'danger':'pass'}>{error.title}</p>
-                            <input placeholder="Title..." value={input.title} type='text' name='title' onChange={e => handleChange(e)} />
-                            
-                            <p className={error.healthScore?'danger':'pass'}>{error.healthScore}</p>
+                            <input className={error.title && 'danger'}  placeholder="Title..." value={input.title} type='text' name='title' onChange={e => handleChange(e)} />
+                            {error.title &&(
+                                <p className="danger">{error.title}</p>
+                            )}
+                            {/* <p className={error.title ? 'danger' : 'pass'}>{error.title}</p> */}
+
+
+                            <p className={error.healthScore ? 'danger' : 'pass'}>{error.healthScore}</p>
                             <input placeholder="Health Score.." value={input.healthScore} type='text' name='healthScore' onChange={e => handleChange(e)} />
-                            
-                            <p className={error.summary?'danger':'pass'}>{error.summary}</p>
+
+                            <p className={error.summary ? 'danger' : 'pass'}>{error.summary}</p>
                             <textarea placeholder="Summary.." value={input.summary} name='summary' onChange={e => handleChange(e)}></textarea>
-                            
-                            <p className={error.steps?'danger':'pass'}>{error.steps}</p>
+
+                            <p className={error.steps ? 'danger' : 'pass'}>{error.steps}</p>
                             <textarea placeholder="Steps..." value={input.steps} name='steps' onChange={e => handleChange(e)}></textarea>
 
 
@@ -185,7 +215,13 @@ export default function CreateRecipe() {
                         </button>
 
 
-                        <button type='submit' className={styles.bottonCreate}>Create</button>
+
+                        {
+                            error.title || !input.healthScore || !input.summary || !input.steps || !input.diets.length?
+                            <button type='submit' className={styles.bottonCreate2} disabled={true}>Create</button>:
+                            <button type='submit' className={styles.bottonCreate} disabled={false}>Create</button>
+
+                        }
                     </div>
 
                 </form>

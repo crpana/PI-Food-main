@@ -15,8 +15,8 @@ export default function LandingPage() {
                 <div className={style.principalContainer}>
 
                     <div className={style.acomodarText}>
-                        <h1 className={style.welcome} >welcome to</h1>
-                        <span className={style.welcome2}> the recipe app</span>
+                        <span className={style.welcome} >Welcome to the recipe app</span>
+                        {/* <span className={style.welcome}> the recipe app</span> */}
                     </div>
                     <div className={style.acomodarboton}>
                         <Link to='/home'>

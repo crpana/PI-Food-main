@@ -47,7 +47,7 @@ const getApiInfo = async () => {
             `https://run.mocky.io/v3/80bbe213-daa0-4638-bc36-ae1bd771a3c4`
         );
         const { results } = dataApi.data;
-        
+
         if (results.length > 0) {
 
             let mapeado = await results?.map(r => {
@@ -92,15 +92,19 @@ const getAllInfoApi = async () => {
 
 const getDbInfoByName = async (name) => {
     try {
-        // const resultDbByName = await getDbInfo();
-        // const filterByName = resultDbByName.filter(r => r.title.includes(name));
-        // return filterByName;
-        const dataDbByName = await Recipe.findAll({
-            where: {
-                title: name
-            }
-        })
-        return dataDbByName;
+        const resultDbByName = await getDbInfo();
+
+
+        const filterByName = resultDbByName.filter(r => r.title.includes(name));
+        // console.log(filterByName,'FILTERBYNAME');
+
+        return filterByName;
+        // const dataDbByName = await Recipe.findAll({
+        //     where: {
+        //         title: name
+        //     }
+        // })
+        // return dataDbByName;
 
     } catch (error) {
         console.log(error);
@@ -164,7 +168,7 @@ router.get('/recipes', async (req, res) => {
 
         const nuevoVariable = await getAllInfoByName(name)
         if (nuevoVariable.length > 0) {
-            console.log('esta lkinea easkjleda');
+            // console.log('esta lkinea easkjleda');
             return res.status(200).json(nuevoVariable);
         } else {
             res.status(404).json('no se encontraron recetas con el nombre pasado por query')
@@ -282,7 +286,7 @@ router.post('/recipes', async (req, res) => {
             steps,
             score,
             image,
-            
+
         });
 
 

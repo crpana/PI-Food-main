@@ -1,16 +1,18 @@
 import React from "react";
 import styles from '../card/card.module.css';
+import imgDefault from '../../img/recipeDefault.jpg'
+
 
 export default function Card({ title, image, diets, id }) {
     return (
 
-
+        
         <React.Fragment >
 
             <div className={styles.card} >
 
                 <div className={styles.imgRecipe}>
-                    <img src={image} alt="imagen de la comida" />
+                    <img src={image?image: imgDefault} alt="imagen de la comida" />
                 </div>
 
                 <div className={styles.cardInfo}>

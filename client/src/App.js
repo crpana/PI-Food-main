@@ -5,12 +5,14 @@ import LandingPage from './components/landingPage/landingPage';
 import Home from './components/home/home';
 import CreateRecipe from './components/createRecipe/createRecipe';
 import Details from './components/details/details';
+import NavBar from './components/navBar/navBar';
 
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <NavBar></NavBar>
         <Switch>
 
           <Route exact path='/' component={LandingPage}></Route>

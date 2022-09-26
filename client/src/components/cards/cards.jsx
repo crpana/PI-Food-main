@@ -13,7 +13,7 @@ export default function Cards({ currentRecipe }) {
                 {
                     currentRecipe.map(rec => (
                         <div key={rec.title}>
-                            <Link to={`/detail/${rec.idApi}`} >
+                            <Link to={`/detail/${rec.idApi?rec.idApi:rec.id}`} >
                                 <Card key={rec.idApi} id={rec.idApi} title={rec.title} image={rec.image} diets={rec.diets}></Card>
                             </Link>
                         </div>
@@ -23,7 +23,7 @@ export default function Cards({ currentRecipe }) {
         </React.Fragment>
 
 
-    ) : <h1>no recipe para mostrar, apretar F5</h1>
+    ) : <h1>no recipe para mostrar, recargar pagina F5</h1>
 
 
 }

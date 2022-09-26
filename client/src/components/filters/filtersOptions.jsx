@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { filterByDiets, filterByHealthScore, filterByOrden, getDiets, setPagina } from "../../redux/actions";
+import { useDispatch ,useSelector} from "react-redux";
+import { filterByDiets, filterByHealthScore, filterByOrden, getDiets } from "../../redux/actions";
 
-// import styles from '../filters/filtersOptions.module.css';
+import styles from '../filters/filtersOptions.module.css';
 
-export default function FiltersOptions({ setOrden,dietas ,setCurrentPage}) {
+export default function FiltersOptions({ setOrden ,setCurrentPage}) {
 
     const dispatch = useDispatch();
+    const dietas = useSelector(state => state.typesDiets);
 
 
     useEffect(() => {
@@ -44,7 +45,7 @@ export default function FiltersOptions({ setOrden,dietas ,setCurrentPage}) {
     return (
 
 
-        <div>
+        <div className={styles.filterSort}>
 
             {/* <div> */}
             <span>filter by diets: </span>
@@ -52,7 +53,10 @@ export default function FiltersOptions({ setOrden,dietas ,setCurrentPage}) {
                     <option disabled={false}>filter by diets</option>
                     {
                         dietas?.map(type => (
-                            <option key={type.name} value={type.name.toLowerCase()}>{type.name}</option>
+                            <option key={type.name} value={type.name}>{type.name}</option>
+                            // <option>asdlkjaskldj</option>
+                            // <optio>asd</optio>
+
                         ))
                     }
                 </select>

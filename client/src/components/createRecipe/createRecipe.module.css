@@ -1,8 +1,8 @@
 .formContainer {
 
     display: flex;
-    background-color: aqua;
-
+    /* background-color: aqua; */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .formMainContainer {
@@ -11,10 +11,11 @@
     align-items: center;
     /* background-color: #951b1b; */
     min-height: 100vh;
+
 }
 
 .formContainerLeft {
-    background-color: rgb(19, 97, 165);
+    /* background-color: rgb(19, 97, 165); */
     display: flex;
     flex-direction: column;
     margin: 0 5rem;
@@ -29,7 +30,7 @@
 
     background-color: rgb(255, 255, 255);
 
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
 
 }
 
@@ -49,7 +50,7 @@
 .formContainerRight {
     display: flex;
     flex-direction: column;
-    margin: 0 5rem;
+    margin:  5rem;
 }
 
 .formDietas {
@@ -64,7 +65,8 @@
 .formButton {
     display: flex;
     justify-content: center;
-    top: 2rem;
+    /* top: 2rem; */
+    margin-top: 30px;
 
 }
 
@@ -72,26 +74,55 @@
 .bottonCreate {
     /* font-family: 'Rubik', sans-serif; */
     /* font-weight: 500; */
-    background-color: #030c0b;
+    /* font-family: 'Monoton', cursive; */
+    font-weight: 500;
+    background-color: #455073;
     border-radius: 10px;
     cursor: pointer;
     color: #ffffff;
-    font-size: 19.2px;
-    width: 12vw;
+    font-size: 1.2em;
+    width: 8vw;
     height: 7vh;
     margin-left: 3rem;
+
+}
+.bottonCreate2 {
+    /* font-family: 'Rubik', sans-serif; */
+    /* font-weight: 500; */
+    /* font-family: 'Monoton', cursive; */
+    font-weight: 500;
+    background-color: #455073;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 1.2em;
+    width: 8vw;
+    height: 7vh;
+    margin-left: 3rem;
+
+}
+.bottonCreate:hover {
+    background-color: #ffffff;
+    color: #000000;
 
 }
 
 .bottonReset {
     /* font-family: 'Rubik', sans-serif; */
+    /* font-family: 'Monoton', cursive; */
     font-weight: 500;
-    background-color: #ff9f1c;
+    background-color: #455073;
     border-radius: 10px;
     cursor: pointer;
     color: #ffffff;
     font-size: 1.2em;
-    width: 12vw;
+    width: 8vw;
     height: 7vh;
+
+}
+
+.bottonReset:hover {
+    background-color: #ffffff;
+    color: #000000;
 
 }

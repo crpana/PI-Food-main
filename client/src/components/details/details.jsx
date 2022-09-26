@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from 'react-router-dom';
 import { getDetails } from "../../redux/actions";
 import style from '../details/details.module.css';
+import imgDefault from '../../img/recipeDefault.jpg'
 
 
 export default function Details() {
@@ -12,7 +13,7 @@ export default function Details() {
 
     useEffect(() => {
         dispatch(getDetails(id))
-    }, [dispatch])
+    }, [dispatch,id])
 
     const AllRecipes = useSelector(state => state.detailsRecipes)
 
@@ -31,7 +32,7 @@ export default function Details() {
 
                         <div className={style.leftContainer}>
 
-                            <img src={AllRecipes.image}></img>
+                            <img src={AllRecipes.image?AllRecipes.image:imgDefault} alt=''></img>
 
                             <div className={style.detailHealth}>
                                 <h1>{AllRecipes.healthScore}</h1>
@@ -44,13 +45,19 @@ export default function Details() {
                             <h1>summary</h1>
 
                             <div className={style.summaryDetalles}>
-                                <p>{AllRecipes.summary}</p>
+                                <p dangerouslySetInnerHTML={{
+                                    __html: AllRecipes.summary,
+                                }}></p>
                             </div>
 
                             <h1>steps</h1>
 
                             <div className={style.stepsDetalles}>
-                                <p>{AllRecipes.steps}</p>
+                                <p
+                                    dangerouslySetInnerHTML={{
+                                        __html: AllRecipes.steps,
+                                    }}
+                                ></p>
                             </div>
 
                         </div>
@@ -59,12 +66,13 @@ export default function Details() {
 
                 </div>
 
-                <div>
-                    <Link to='/home'>
-                        <button>Back to Home</button>
-                    </Link>
-                </div>
 
+
+            </div>
+            <div>
+                <Link to='/home'>
+                    <button className={style.boton}>Back to Home</button>
+                </Link>
             </div>
         </React.Fragment>
     );

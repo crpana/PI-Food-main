@@ -46,6 +46,12 @@ const rootReducer = (state = initialState, action) => {
 
             const allRecipes = state.copiaRecipes;
 
+            // const prueba=allRecipes.filter(receta=>{
+
+            // })
+            
+
+            
             const filtroPorDietas = action.payload === 'filter by diets' ? state.copiaRecipes :
                 allRecipes.filter(r => {
                     if (r.diets.length > 0) {
@@ -58,7 +64,9 @@ const rootReducer = (state = initialState, action) => {
 
 
                     }
+                    return false;
                 })
+          
             return {
                 ...state,
                 recipes: filtroPorDietas

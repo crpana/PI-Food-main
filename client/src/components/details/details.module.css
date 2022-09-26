@@ -5,9 +5,9 @@
 	align-items: center;
 }
 .contitle{
-    font-family: 'Rubik';
+    /* font-family: 'Rubik'; */
 	font-size: 3rem;
-	color: #ff9f1c;
+	color: #000000;
 	margin: 0.5rem 0;
 }
 
@@ -53,5 +53,23 @@
 .detailHealth h1{
 	font-family: 'Poppins';
 	color: #2ec4b6;
+
+}
+
+.boton{
+	   /* font-family: 'Rubik', sans-serif; */
+    /* font-family: 'Monoton', cursive; */
+    font-weight: 500;
+    background-color: #455073;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 1.2em;
+    width: 11vw;
+    height: 7vh;
+}
+.boton:hover {
+    background-color: #ffffff;
+    color: #000000;
 
 }

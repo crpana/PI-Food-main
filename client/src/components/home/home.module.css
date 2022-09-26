@@ -3,10 +3,13 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #3dd4d7;
+    /* background-color: #6077c0; */
     height: 10vh;
 
     
+}
+.fondo{
+    background-color: #ebebeb;
 }
 
 

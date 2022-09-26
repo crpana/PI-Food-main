@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { getRecipesName } from "../../redux/actions";
-
+import style from '../search/search.module.css'
 export default function Search() {
     const dispatch = useDispatch();
     const [name, setName] = useState('');
@@ -15,7 +15,7 @@ export default function Search() {
     }
     function handleSubmit(e) {
         e.preventDefault();
-
+        console.log(name);
         if (name) {
             dispatch(getRecipesName(name))
             setName('')
@@ -27,11 +27,11 @@ export default function Search() {
 
         <React.Fragment>
 
-            <div>
+            <div className={style.conteiner}>
 
                 <input type='text' value={name} onChange={e => handleInput(e)} placeholder="ingrese receta..."></input>
 
-                <button type="submit" onClick={e => handleSubmit(e)}>Buscar</button>
+                <button type="submit" onClick={e => handleSubmit(e)} className={style.boton}>Buscar</button>
 
             </div>
             

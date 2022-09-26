@@ -15,7 +15,8 @@ export function getRecipesName(name) {
     return async function (dispatch) {
         try {
 
-            const recetas = await axios.get(`http://localhost:3001/recipes?name=${name}`);
+            const recetas = await axios.get(`http://localhost:3001/recipes?name=${name.toLowerCase()}`);
+            // console.log(name);
             return dispatch({
                 type: GET_RECIPES_NAME,
                 payload: recetas.data,
