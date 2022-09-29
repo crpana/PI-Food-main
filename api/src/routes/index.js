@@ -27,7 +27,8 @@ const getDbInfo = async () => {
                 score: r.score,
                 image: r.image,
                 steps: r.steps,
-                diets: r.diets?.map(d => d.name)
+                diets: r.diets?.map(d => d.name),
+                createInDb:r.createInDb
 
             };
         });
@@ -46,6 +47,9 @@ const getApiInfo = async () => {
         const dataApi = await axios.get(
             `https://run.mocky.io/v3/80bbe213-daa0-4638-bc36-ae1bd771a3c4`
         );
+        // const dataApi = await axios.get(
+        //     `https://run.mocky.io/v3/9ea83364-1522-4fa4-b624-623d59fc1f2a`
+        // );
         const { results } = dataApi.data;
 
         if (results.length > 0) {
@@ -285,7 +289,8 @@ router.post('/recipes', async (req, res) => {
             healthScore,
             steps,
             score,
-            image,
+            image:image?image:'https://i.ytimg.com/vi/pecKFzpJ20A/hqdefault.jpg'
+            
 
         });
 

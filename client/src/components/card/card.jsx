@@ -1,9 +1,8 @@
 import React from "react";
 import styles from '../card/card.module.css';
-import imgDefault from '../../img/recipeDefault.jpg'
 
 
-export default function Card({ title, image, diets, id }) {
+export default function Card({ title, image, diets, id ,healthScore }) {
     return (
 
         
@@ -12,7 +11,7 @@ export default function Card({ title, image, diets, id }) {
             <div className={styles.card} >
 
                 <div className={styles.imgRecipe}>
-                    <img src={image?image: imgDefault} alt="imagen de la comida" />
+                    <img src={image} alt="imagen de la comida" width='300px' height='250px'/>
                 </div>
 
                 <div className={styles.cardInfo}>
@@ -29,6 +28,8 @@ export default function Card({ title, image, diets, id }) {
                             ))
                         }
                     </div>
+
+                    <h1>{healthScore}</h1>
 
                 </div>
                 

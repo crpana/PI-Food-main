@@ -14,7 +14,7 @@ export default function Cards({ currentRecipe }) {
                     currentRecipe.map(rec => (
                         <div key={rec.title}>
                             <Link to={`/detail/${rec.idApi?rec.idApi:rec.id}`} >
-                                <Card key={rec.idApi} id={rec.idApi} title={rec.title} image={rec.image} diets={rec.diets}></Card>
+                                <Card key={rec.idApi} id={rec.idApi} title={rec.title} image={rec.image} diets={rec.diets} healthScore={rec.healthScore}></Card>
                             </Link>
                         </div>
                     ))

@@ -5,6 +5,7 @@ import { getDiets, postRecipes } from "../../redux/actions";
 import styles from '../createRecipe/createRecipe.module.css';
 
 
+
 function validar(input) {
     var error = {};
 
@@ -62,6 +63,7 @@ export default function CreateRecipe() {
         summary: '',
         steps: '',
         diets: [],
+        
     })
 
     function handleChange(e) {
@@ -71,13 +73,19 @@ export default function CreateRecipe() {
                 [e.target.name]: e.target.value
             })
         )
+        
+        // console.log(input,'input');
 
         setInput({
             ...input,
             [e.target.name]: e.target.value, //e.target.title va a set cada type que tengan los <inputs/>
         })
+        // console.log(input,'ACA');
+
 
     }
+    
+
 
     function handleCheck(e) {
         // console.log(input.diets);
@@ -101,13 +109,11 @@ export default function CreateRecipe() {
 
             })
 
-            // console.log(input.diets, 'quietado');
 
         }
 
 
     }
-    // console.log(input.diets, 'cargado');
 
 
 
@@ -124,6 +130,7 @@ export default function CreateRecipe() {
                 summary: '',
                 steps: '',
                 diets: [],
+                
             })
             document.querySelectorAll('#idRecipe input[type=checkbox]').forEach(function (checkElement) {
                 checkElement.checked = false
@@ -147,6 +154,7 @@ export default function CreateRecipe() {
             summary: '',
             steps: '',
             diets: [],
+            
 
         })
 
@@ -170,6 +178,8 @@ export default function CreateRecipe() {
 
                     <div className={styles.formContainer}>
                         <div className={styles.formContainerLeft}>
+
+                            {/* <img value={imgDefault} onChange={(e=>handleChange(e))}/> */}
 
                             <input className={error.title && 'danger'}  placeholder="Title..." value={input.title} type='text' name='title' onChange={e => handleChange(e)} />
                             {error.title &&(
@@ -217,7 +227,7 @@ export default function CreateRecipe() {
 
 
                         {
-                            error.title || !input.healthScore || !input.summary || !input.steps || !input.diets.length?
+                            error.title || !input.healthScore || !input.summary || !input.steps || !input.diets.length? //todos false para habilitar el boton
                             <button type='submit' className={styles.bottonCreate2} disabled={true}>Create</button>:
                             <button type='submit' className={styles.bottonCreate} disabled={false}>Create</button>
 

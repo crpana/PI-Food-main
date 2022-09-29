@@ -35,7 +35,7 @@ export default function Home() {
     const indexOfLastRecipe = currentPage * recipesPerPage;
     const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
     const currentRecipe = recetas.length ? recetas.slice(indexOfFirstRecipe, indexOfLastRecipe) : [];
-
+// console.log(currentRecipe);
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
         // dispatch(setPagina(pageNumber))
@@ -59,14 +59,11 @@ export default function Home() {
                 {/* <button onClick={e => { handleClick(e) }}>Volver a cargar recetas</button> */}
 
                 <div className={style.filterSort}>
-                    {/* <div> */}
+                    
                     <FiltersOptions setCurrentPage={setCurrentPage} orden={orden} setOrden={setOrden} ></FiltersOptions>
                     
-                    <Search></Search>
-                    {/* <Link to='/create'>
-                        <button>Create a new Recipe</button>
-                    </Link> */}
-                    {/* </div> */}
+                    <Search setCurrentPage={setCurrentPage}></Search>
+            
                 </div>
 
                 <div>

@@ -11,6 +11,10 @@ export const POST_RECIPE = 'POST_RECIPE';
 export const GET_DETAILS = 'GET_DETAILS';
 
 
+export const FILTER_NUEVO = 'FILTER_NUEVO';
+export const limpiar_DETAILS = 'limpiar_DETAILS';
+export const FILTRO_DB_API='FILTRO_DB_API';
+
 export function getRecipesName(name) {
     return async function (dispatch) {
         try {
@@ -104,6 +108,31 @@ export function getDetails(id) {
         } catch (error) {
             console.log(error);
         }
-        
+
     };
+}
+
+
+// export function filterNuevo(payload) {
+//     return {
+//         type: FILTER_NUEVO,
+//         payload: payload
+
+//     };
+// }
+
+
+export function clearDetails() {
+    return {
+        type: limpiar_DETAILS,
+       
+    }
+}
+
+
+export function filtroDbAPI(payload){
+    return{
+        type:FILTRO_DB_API,
+        payload:payload
+    }
 }

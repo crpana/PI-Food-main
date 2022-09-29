@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { getRecipesName } from "../../redux/actions";
 import style from '../search/search.module.css'
-export default function Search() {
+export default function Search({setCurrentPage}) {
     const dispatch = useDispatch();
     const [name, setName] = useState('');
 
@@ -15,9 +15,10 @@ export default function Search() {
     }
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(name);
+        // console.log(name);
         if (name) {
             dispatch(getRecipesName(name))
+            setCurrentPage(1)
             setName('')
         }
 

@@ -7,7 +7,10 @@ import {
     FILTER_BY_ORDEN,
     FILTER_BY_HEALTHSCORE,
     POST_RECIPE,
-    GET_DETAILS
+    GET_DETAILS,
+    FILTER_NUEVO,
+    limpiar_DETAILS,
+    FILTRO_DB_API
 } from "../actions";
 
 
@@ -16,7 +19,8 @@ const initialState = {
     copiaRecipes: [],
     currentPage: 1,
     typesDiets: [],
-    detailsRecipes:[],
+    detailsRecipes: [],
+    detailsClear: []
 };
 
 
@@ -49,9 +53,9 @@ const rootReducer = (state = initialState, action) => {
             // const prueba=allRecipes.filter(receta=>{
 
             // })
-            
 
-            
+
+
             const filtroPorDietas = action.payload === 'filter by diets' ? state.copiaRecipes :
                 allRecipes.filter(r => {
                     if (r.diets.length > 0) {
@@ -66,7 +70,7 @@ const rootReducer = (state = initialState, action) => {
                     }
                     return false;
                 })
-          
+
             return {
                 ...state,
                 recipes: filtroPorDietas
@@ -141,22 +145,58 @@ const rootReducer = (state = initialState, action) => {
                     }
                     return 0;
                 })
-            return{
+            return {
                 ...state,
-                recipes:recetasByHS
+                recipes: recetasByHS
             };
 
         case POST_RECIPE:
-            return{
+            return {
                 ...state
             };
-        
+
         case GET_DETAILS:
-            return{
+            return {
                 ...state,
-                detailsRecipes:action.payload
+                detailsRecipes: action.payload
 
             };
+
+        case limpiar_DETAILS:
+            const limpio = state.detailsClear;
+
+            return {
+                ...state,
+                detailsRecipes: limpio
+            };
+
+
+        case FILTER_NUEVO:
+            const recetaByNuevo = action.payload === 'si' ?
+                state.copiaRecipes.filter(r => r.healthScore >= 50 && r.healthScore <= 60) :
+                state.copiaRecipes
+
+            console.log(recetaByNuevo);
+
+            return {
+                ...state,
+                recipes: recetaByNuevo,
+            };
+
+        case FILTRO_DB_API:
+            // console.log(state.copiaRecipes);
+            const recetaApiDb=action.payload==='db'?
+            state.copiaRecipes.filter(rec=>rec.createInDb===true):
+            state.copiaRecipes
+            console.log(recetaApiDb);
+
+            return {
+                ...state,
+                recipes:recetaApiDb
+            };
+
+            
+
         default:
             return state;
     }
