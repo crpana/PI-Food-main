@@ -21,7 +21,7 @@ export function getRecipesName(name) {
     return async function (dispatch) {
         try {
 
-            const recetas = await axios.get(`http://localhost:3001/recipes?name=${name.toLowerCase()}`);
+            const recetas = await axios.get(`https://pi-food.up.railway.app/recipes?name=${name.toLowerCase()}`);
             // console.log(name);
             return dispatch({
                 type: GET_RECIPES_NAME,
@@ -43,7 +43,7 @@ export function setPagina(payload) {
 
 export function getRecipes() {
     return async function (dispatch) {
-        let result = await axios.get(`http://localhost:3001/recipes`, {});
+        let result = await axios.get(`https://pi-food.up.railway.app/recipes`, {});
         return dispatch({
             type: GET_ALL_RECIPES,
             payload: result.data,
@@ -54,7 +54,7 @@ export function getRecipes() {
 
 export function getDiets() {
     return async function (dispatch) {
-        let alldietas = await axios.get(`http://localhost:3001/diets`, {})
+        let alldietas = await axios.get(`https://pi-food.up.railway.app/diets`, {})
         return dispatch({
             type: GET_DIETS,
             payload: alldietas.data,
@@ -90,7 +90,7 @@ export function postRecipes(payload) {
     console.log(payload, 'este es el payload de postRecipes');
 
     return async function (dispatch) {
-        let json = await axios.post(`http://localhost:3001/recipe`, payload)
+        let json = await axios.post(`https://pi-food.up.railway.app/recipe`, payload)
         return dispatch({
             type: POST_RECIPE,
             payload: json,
@@ -101,7 +101,7 @@ export function postRecipes(payload) {
 export function getDetails(id) {
     return async function (dispatch) {
         try {
-            let json = await axios.get(`http://localhost:3001/recipes/${id}`)
+            let json = await axios.get(`https://pi-food.up.railway.app/recipes/${id}`)
             return dispatch({
                 type: GET_DETAILS,
                 payload: json.data
