@@ -1,26 +1,29 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from 'react-router-dom';
-import { getDetails, clearDetails } from "../../redux/actions";
+import { getDetails, clearDetails,getDetailsById, getRecipes } from "../../redux/actions";
 import style from '../details/details.module.css';
 // import imgDefault from '../../img/recipeDefault.jpg'
 
 
 export default function Details() {
+    // console.log(parseInt(props.match.params.id));
 
     const dispatch = useDispatch()
     const { id } = useParams()
 
-    
+    // console.log(typeof id,'esta id es por params');
 
     useEffect(() => {
         dispatch(getDetails(id))
         return () => dispatch(clearDetails())
     }, [dispatch, id])
+
+   
     const AllRecipes = useSelector(state => state.detailsRecipes)
 
 
-    // console.log(typeof AllRecipes);
+    console.log(AllRecipes);
 
 
     return (

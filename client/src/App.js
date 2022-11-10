@@ -7,7 +7,6 @@ import CreateRecipe from './components/createRecipe/createRecipe';
 import Details from './components/details/details';
 import NavBar from './components/navBar/navBar';
 
-
 function App() {
   return (
     <BrowserRouter>
@@ -17,8 +16,12 @@ function App() {
 
           <Route exact path='/' component={LandingPage}></Route>
           <Route path='/home' component={Home}></Route>
+
           <Route path='/detail/:id' component={Details}></Route>
+          {/* <Route path='/detail' component={Details}></Route> */}
+
           <Route path='/create' component={CreateRecipe}></Route>
+
 
 
         </Switch>

@@ -10,7 +10,8 @@ import {
     GET_DETAILS,
     FILTER_NUEVO,
     limpiar_DETAILS,
-    FILTRO_DB_API
+    FILTRO_DB_API,
+    GET_DETAILS_ID
 } from "../actions";
 
 
@@ -56,7 +57,7 @@ const rootReducer = (state = initialState, action) => {
 
 
 
-            const filtroPorDietas = action.payload === 'filter by diets' ? state.copiaRecipes :
+            const filtroPorDietas = action.payload === 'filter by diets' ? allRecipes :
                 allRecipes.filter(r => {
                     if (r.diets.length > 0) {
                         if (r.diets.find(e => e === action.payload.toLowerCase())) {
@@ -73,7 +74,9 @@ const rootReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                recipes: filtroPorDietas
+                recipes: filtroPorDietas,
+                
+
             }
 
         // let stateDiets=[];
@@ -102,7 +105,7 @@ const rootReducer = (state = initialState, action) => {
         case FILTER_BY_ORDEN:
 
             const recetasSort = action.payload === 'ascendente' ?
-                state.copiaRecipes.sort(function (a, b) {
+                state.recipes.sort(function (a, b) {
                     if (a.title.toLowerCase() > b.title.toLowerCase()) {
                         return 1;
                     }
@@ -111,7 +114,7 @@ const rootReducer = (state = initialState, action) => {
                     }
                     return 0;
                 }) :
-                state.copiaRecipes.sort(function (a, b) {
+                state.recipes.sort(function (a, b) {
                     if (a.title.toLowerCase() > b.title.toLowerCase()) {
                         return -1;
                     }
@@ -122,12 +125,13 @@ const rootReducer = (state = initialState, action) => {
                 })
             return {
                 ...state,
+                // recipes: recetasSort,
                 recipes: recetasSort,
             };
 
         case FILTER_BY_HEALTHSCORE:
             const recetasByHS = action.payload === 'maM' ?
-                state.copiaRecipes.sort(function (a, b) {
+                state.recipes.sort(function (a, b) {
                     if (a.healthScore > b.healthScore) {
                         return 1;
                     }
@@ -136,7 +140,7 @@ const rootReducer = (state = initialState, action) => {
                     }
                     return 0;
                 }) :
-                state.copiaRecipes.sort(function (a, b) {
+                state.recipes.sort(function (a, b) {
                     if (a.healthScore > b.healthScore) {
                         return -1;
                     }
@@ -156,11 +160,28 @@ const rootReducer = (state = initialState, action) => {
             };
 
         case GET_DETAILS:
+
             return {
                 ...state,
                 detailsRecipes: action.payload
 
             };
+
+        // case GET_DETAILS_ID:
+        //     const filtIdDetail = state.copiaRecipes
+        //     const idRecipeDetail = filtIdDetail.find(r => {
+        //         if (typeof action.payload === 'number') {
+        //             if (r.idApi === action.payload) return r;
+        //         } else {
+        //             if (r.id === action.payload) return r;
+        //         }
+        //     })
+
+        //     return {
+        //         ...state,
+        //         detailsRecipes: idRecipeDetail
+        //     };
+
 
         case limpiar_DETAILS:
             const limpio = state.detailsClear;
@@ -185,17 +206,17 @@ const rootReducer = (state = initialState, action) => {
 
         case FILTRO_DB_API:
             // console.log(state.copiaRecipes);
-            const recetaApiDb=action.payload==='db'?
-            state.copiaRecipes.filter(rec=>rec.createInDb===true):
-            state.copiaRecipes
+            const recetaApiDb = action.payload === 'db' ?
+                state.copiaRecipes.filter(rec => rec.createInDb === true) :
+                state.copiaRecipes
             console.log(recetaApiDb);
 
             return {
                 ...state,
-                recipes:recetaApiDb
+                recipes: recetaApiDb
             };
 
-            
+
 
         default:
             return state;

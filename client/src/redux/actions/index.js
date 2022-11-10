@@ -15,6 +15,8 @@ export const FILTER_NUEVO = 'FILTER_NUEVO';
 export const limpiar_DETAILS = 'limpiar_DETAILS';
 export const FILTRO_DB_API='FILTRO_DB_API';
 
+export const GET_DETAILS_ID='GET_DETAILS_ID';
+
 export function getRecipesName(name) {
     return async function (dispatch) {
         try {
@@ -88,7 +90,7 @@ export function postRecipes(payload) {
     console.log(payload, 'este es el payload de postRecipes');
 
     return async function (dispatch) {
-        let json = await axios.post(`http://localhost:3001/recipes`, payload)
+        let json = await axios.post(`http://localhost:3001/recipe`, payload)
         return dispatch({
             type: POST_RECIPE,
             payload: json,
@@ -111,6 +113,8 @@ export function getDetails(id) {
 
     };
 }
+
+
 
 
 // export function filterNuevo(payload) {
